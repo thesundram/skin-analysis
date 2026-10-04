@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
+import { ArrowLeft, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -48,7 +49,23 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-background">
-      <div className="flex-1 flex items-center justify-center p-4">
+      {/* Top Header with Back to Home button */}
+      <header className="w-full border-b bg-background/80 backdrop-blur sticky top-0 z-40 px-4 py-3">
+        <div className="container mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+            <span>Back to Home</span>
+          </Link>
+          <Link href="/" className="text-xs font-semibold text-primary/80 hover:text-primary transition-colors">
+            SkinAI Portal
+          </Link>
+        </div>
+      </header>
+
+      <div className="flex-1 flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-md shadow-lg border">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
@@ -112,12 +129,21 @@ export default function LoginPage() {
                 {isLoading ? <Spinner className="mr-2" /> : null}
                 Sign In
               </Button>
-              <p className="text-sm text-muted-foreground text-center">
-                Don&apos;t have an account?{" "}
-                <Link href="/auth/sign-up" className="text-primary hover:underline font-medium">
-                  Create an account
+              <div className="flex flex-col gap-2 text-center text-sm">
+                <p className="text-muted-foreground">
+                  Don&apos;t have an account?{" "}
+                  <Link href="/auth/sign-up" className="text-primary hover:underline font-medium">
+                    Create an account
+                  </Link>
+                </p>
+                <Link
+                  href="/"
+                  className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors pt-1"
+                >
+                  <Home className="w-3.5 h-3.5" />
+                  <span>Return to Home Page</span>
                 </Link>
-              </p>
+              </div>
             </CardFooter>
           </form>
         </Card>
