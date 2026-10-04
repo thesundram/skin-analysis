@@ -37,7 +37,10 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
       email: doc.email,
       fullName: doc.fullName || payload.fullName,
     };
-  } catch (err) {
+  } catch (err: any) {
+    if (err?.digest === "DYNAMIC_SERVER_USAGE" || err?.message?.includes("Dynamic server usage")) {
+      throw err;
+    }
     console.error("getCurrentUser error:", err);
     return null;
   }

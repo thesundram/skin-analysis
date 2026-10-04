@@ -3,6 +3,8 @@ import { getCurrentUser } from "@/lib/auth";
 import { getAnalysesCollection, getDailyCacheCollection } from "@/lib/mongodb";
 import { SkinAnalyzerWithAuth } from "@/components/skin-analysis/skin-analyzer-with-auth";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const user = await getCurrentUser();
 
